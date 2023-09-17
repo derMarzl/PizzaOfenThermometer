@@ -1,18 +1,27 @@
 #include <Arduino.h>
+#include "max6675.h"
 
-// put function declarations here:
-int myFunction(int, int);
+int thermoDO = 4;
+int thermoCS = 5;
+int thermoCLK = 6;
+
+MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+
+  Serial.println("MAX6675 test");
+  // wait for MAX chip to stabilize
+  delay(500);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  // basic readout test, just print the current temp
+  
+   Serial.print("C = "); 
+   Serial.println(thermocouple.readCelsius());
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+ 
+   // For the MAX6675 to update, you must delay AT LEAST 250ms between reads!
+   delay(1000);
 }
