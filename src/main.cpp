@@ -22,9 +22,24 @@ Adafruit_SSD1306 display(OLED_RESET);
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");
 #endif
 
+#define LED_PIN 2
+
+void LEDan() {
+  digitalWrite(LED_PIN, LOW);
+}
+
+void LEDaus() {
+  digitalWrite(LED_PIN, HIGH);
+}
+
+void LEDinit() {
+  pinMode(LED_PIN, OUTPUT);
+}
 
 
 void setup() {
+  LEDinit();
+  LEDan();
   Serial.begin(115200);
 
   Serial.println("MAX6675 test");
@@ -41,6 +56,7 @@ void setup() {
   display.println("max6675");
   display.display();
   delay(4000);
+  LEDaus();
 }
 
 void printValues() {
@@ -56,8 +72,10 @@ void printValues() {
 }
 
 void loop() {
+  LEDan();
 
   printValues();
   
+  LEDaus();
   delay(1000);
 }
