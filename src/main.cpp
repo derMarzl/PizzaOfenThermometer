@@ -55,7 +55,7 @@ void setup() {
   display.println("thermocouple");
   display.println("max6675");
   display.display();
-  delay(4000);
+  delay(4000);  // mindestens 500ms warten für MAX6675
   LEDaus();
 }
 
