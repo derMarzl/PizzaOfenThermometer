@@ -5,12 +5,12 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-int thermoDO = 4;
-int thermoCS = 5;
-int thermoCLK = 6;
+int thermoDO = 12;
+int thermoCS = 15;
+int thermoCLK = 14;
 
 MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
-float Temperatur;
+float Temperatur=0;
 
 // SCL GPIO5
 // SDA GPIO4
@@ -36,7 +36,6 @@ void LEDinit() {
   pinMode(LED_PIN, OUTPUT);
 }
 
-
 void setup() {
   LEDinit();
   LEDan();
@@ -45,6 +44,10 @@ void setup() {
   Serial.println("MAX6675 test");
   // wait for MAX chip to stabilize
   //delay(500);
+
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C 0x3D(for the 64x48)
+  display.display();
+  display.clearDisplay();
 
   display.setTextSize(1);
   display.setTextColor(WHITE);
@@ -77,5 +80,5 @@ void loop() {
   printValues();
   
   LEDaus();
-  delay(1000);
+  delay(500);
 }
