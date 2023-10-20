@@ -53,9 +53,9 @@ void setup() {
   display.setTextColor(WHITE);
   display.setCursor(0,0);
   display.println("Pizzaofen-");
-  display.println("Thermometer");
+  display.println("Thermo-");
+  display.println("meter");
   display.println("");
-  display.println("thermocouple");
   display.println("max6675");
   display.display();
   delay(4000);  // mindestens 500ms warten für MAX6675
