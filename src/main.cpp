@@ -1,3 +1,4 @@
+// Pizzaofen Thermometer
 #include <Arduino.h>
 #include "max6675.h"
 
